@@ -1,0 +1,136 @@
+/**
+ * Created by David on 11/5/2016.
+ */
+
+import java.util.*;
+import java.io.*;
+public class RockPaperscissors
+{
+    static String sName = "David McSpadden";
+    static String sSchool = "R. L. Paschal H.S.";
+    static String sLab = "RockPaperScissors";
+    static Scanner oScan= new Scanner(System.in);
+
+
+
+    public static void main(String sArgs[])throws IOException
+    {
+        begin();
+
+        char cComputer=0, cPlayer=0; int iCscore=0, iPscore=0;
+        Random oRan = new Random();
+        String sChoice ="RPS";
+        OuterLoop://This is a label to distiguish between the while loops
+        while(true)//This is the outer loop. It wil run until player enters 'Q'
+        {
+            System.out.println("\nNew Game!\nLets play Rock, Paper, Scissors!");
+            while(true)//This is inner loop. IT will run as long as there is a tie
+            {
+                System.out.println("Please type R, P, or S, then press ENTER (CASE DOESN'T MATTER"+
+                        "...Q to Quit:");
+                cPlayer = oScan.nextLine().charAt(0);
+                cPlayer = Character.toUpperCase(cPlayer);
+                if (cPlayer== 'Q') break OuterLoop;
+                while(sChoice.indexOf(cPlayer) == -1)
+                {
+                    System.out.println("Please type R, P, or S, then press ENTER (CASE DOESN'T MATTER"+
+                            "...Q to Quit:");
+                    cPlayer = oScan.nextLine().charAt(0);
+                    cPlayer = Character.toUpperCase(cPlayer);
+                    if (cPlayer== 'Q') break OuterLoop;
+
+                }
+                int iChoice = oRan.nextInt(3)+1;
+                switch(iChoice)
+                {
+                    case 1: cComputer= 'R'; break;
+                    case 2: cComputer= 'P'; break;
+                    case 3: cComputer= 'S'; break;
+                }
+                System.out.println("Press enter to see the computer's choice:");
+                oScan.nextLine();
+                if (cComputer== 'R'&& cPlayer== 'P')
+                {
+                    System.out.println("Computer choose R. Paper covers Rock!" +
+                            "YOU WIN!");
+                    iPscore++;
+                    continue OuterLoop;
+                }
+                if (cComputer== 'R'&& cPlayer== 'S')
+                {
+                    System.out.println("Computer chose R. Rock breaks Scissors!" +
+                            "Computer Wins!");
+                    iCscore++;
+                    continue OuterLoop;
+                }
+                if (cComputer== 'S'&& cPlayer== 'P')
+                {
+                    System.out.println("Computer chose S. Scissors cut Paper!" +
+                            "Computer Wins!");
+                    iCscore++;
+                    continue OuterLoop;
+                }
+                if (cComputer== 'S'&& cPlayer== 'R')
+                {
+                    System.out.println("Computer chose S. Rock breaks Scissors!" +
+                            "You Win!");
+                    iPscore++;
+                    continue OuterLoop;
+                }
+                if (cComputer== 'P'&& cPlayer== 'R')
+                {
+                    System.out.println("Computer chose P. Paper eats Rock!" +
+                            "Computer Wins!");
+                    iCscore++;
+                    continue OuterLoop;
+                }
+                if (cComputer== 'P'&& cPlayer== 'S')
+                {
+                    System.out.println("Computer chose P. Scissors cut Paper!" +
+                            "You Win!");
+                    iPscore++;
+                    continue OuterLoop;
+                }
+                System.out.println("Computer Chose "+ cComputer+" IT'S A TIE!");
+                //If control gets here, the choice were the same
+            }
+
+
+
+        }
+
+        System.out.println("Thanks for playing...Here's the score:"+
+                " Computer= "+iCscore+" You = "+ iPscore);
+        if(iPscore>iCscore)
+            System.out.println("Congradulations! YOU WON");
+        else
+        if(iCscore>iPscore)
+            System.out.println("So Sorry...YOU LOST");
+        else
+        if(iPscore==iCscore)
+            System.out.println("IT WAS A TIE");
+
+
+
+
+        end();
+    }
+
+    public static void begin()throws IOException
+    {   Date oDate = new Date();
+        System.out.println(sName+" "+sSchool+"  Lab: "+sLab);
+        System.out.println(oDate);
+        System.out.println("*************************** EXECUTION BEGINS ****************************");
+        System.out.println();
+    }
+
+    public static void end()throws IOException
+    {
+        Date oDate = new Date();
+        System.out.println();
+        System.out.println("***************************  EXECUTION ENDS *****************************");
+        System.out.println(sName+" "+sSchool+"  Lab: "+sLab+"**");
+        System.out.println(oDate);
+
+    }
+}
