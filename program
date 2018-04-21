@@ -7,7 +7,7 @@ import java.io.*;
 public class RockPaperscissors
 {
     static String sName = "David McSpadden";
-    static String sSchool = "R. L. Paschal H.S.";
+    static String sSchool = "UTD";
     static String sLab = "RockPaperScissors";
     static Scanner oScan= new Scanner(System.in);
 
